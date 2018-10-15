@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  UserDemo
 //
-//  Created by Supa Ram on 10/13/18.
+//  Created by CharlesAE on 10/13/18.
 //  Copyright © 2018 LEO Technology. All rights reserved.
 //
 
@@ -16,6 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //Manually create the application window
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        //Custom theming on the application
+        UIApplication.shared.statusBarStyle = .lightContent
+        application.isStatusBarHidden = false
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().tintColor = .white
+        
+        //Instantiate a navigation controller (nav1) and assign the randomly generated ViewController to it
+        let nav1 = UINavigationController()
+        nav1.navigationBar.isTranslucent = false
+        nav1.navigationBar.barTintColor = .darkGray
+        let vc = ViewController()
+        nav1.viewControllers = [vc]
+        
+        //Set nav1 as the window's root viewcontroller
+        window?.rootViewController = nav1
+        
+        //Show the window
+        window?.makeKeyAndVisible()
         return true
     }
 

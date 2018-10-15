@@ -10,6 +10,8 @@ import UIKit
 
 class UserCell: UICollectionViewCell {
     
+    
+    //Creating an ImageView, assigning it an image from the assets folder
     let userImage: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .clear
@@ -21,6 +23,7 @@ class UserCell: UICollectionViewCell {
         return iv
     }()
     
+    //Creating a label
     let userName: UILabel = {
         let label = UILabel()
         label.text = "Name"
@@ -48,14 +51,23 @@ class UserCell: UICollectionViewCell {
         addSubview(userImage)
         addSubview(userName)
         
+        //Constraints with visual format
+        //Label will fill the view from right to left with 1px of space on each side
         addConstraintsWithFormat("H:|-1-[v0]-1-|", views: userName)
         
+        //If device is a phone
         if UIDevice().userInterfaceIdiom == .phone {
+            //Image is given a max width of 52px, and will span the view from right to left
             addConstraintsWithFormat("H:|[v0(52@1000)]|", views: userImage)
+            
+            //Image is give na max height of 52 pixel, and will be placed above the label, label will have 2px of space underneath it
             addConstraintsWithFormat("V:|[v0(52@1000)]-2@1000-[v1]|", views: userImage, userName)
         }
+            //If not an iphone
         else{
+            //Image will fill the view horizontally
             addConstraintsWithFormat("H:|[v0]|", views: userImage)
+            //Image will be placed above the label, label will have 2px of space underneath it
             addConstraintsWithFormat("V:|[v0]-2@1000-[v1]|", views: userImage, userName)
         }
         
